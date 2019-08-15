@@ -15,8 +15,9 @@ namespace CoinPayments.NetCore.Test
         [Fact]
         public void Test_Payment()
         {
-            var coinPaymentsClient = new CoinPaymentsClient(Environment.GetEnvironmentVariable("CoinPayments_ApiKey"), Environment.GetEnvironmentVariable("CoinPayments_SecretKey"));
-            coinPaymentsClient.MakeOrder("1", "LTC", "BTC", "zedobar@msn.com", "TOKEN PROMO I", "5841", "http://google.com.br", "http://google.com.br", "http://google.com.br");
+            var coinPaymentsClient = new CoinPaymentsClient(Environment.GetEnvironmentVariable("coinpayments__apikey"), Environment.GetEnvironmentVariable("coinpayments__secretkey"));
+            var response = coinPaymentsClient.MakeOrder("1", "BTC", "BTC", "zedobar@msn.com", "TOKEN PROMO I", "5841", "http://google.com.br", "http://google.com.br", "http://google.com.br");
+            Assert.True(response.Error == "ok", response.ErrorMessage);
         }
     }
 }
